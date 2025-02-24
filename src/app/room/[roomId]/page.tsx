@@ -205,6 +205,7 @@ export default function RoomPage() {
             onClose={handleLeaveRoom}
             onReset={handleReset}
             counts={gameState.counts}
+            isOnlineMode={true}
           />
         )}
       </div>

@@ -11,9 +11,10 @@ interface GameResultModalProps {
     black: number;
     white: number;
   };
+  isOnlineMode?: boolean;
 }
 
-export function GameResultModal({ isOpen, onClose, onReset, counts }: GameResultModalProps) {
+export function GameResultModal({ isOpen, onClose, onReset, counts, isOnlineMode = false }: GameResultModalProps) {
   if (!isOpen) return null;
 
   const winner = counts.black > counts.white ? '黒' : counts.black < counts.white ? '白' : null;
@@ -29,7 +30,7 @@ export function GameResultModal({ isOpen, onClose, onReset, counts }: GameResult
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-            onClick={onClose}
+            onClick={isOnlineMode ? onClose : onReset}
           />
           
           <motion.div
@@ -38,14 +39,16 @@ export function GameResultModal({ isOpen, onClose, onReset, counts }: GameResult
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl relative z-10"
           >
-            <div className="absolute top-4 right-4">
-              <button
-                onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
+            {isOnlineMode && (
+              <div className="absolute top-4 right-4">
+                <button
+                  onClick={onClose}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            )}
 
             <div className="text-center space-y-6">
               <div className="flex justify-center">
@@ -100,19 +103,25 @@ export function GameResultModal({ isOpen, onClose, onReset, counts }: GameResult
                 transition={{ delay: 0.5 }}
                 className="flex flex-col gap-3"
               >
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={onReset}
                   className="flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors"
                 >
                   <RefreshCw className="w-5 h-5" />
                   もう一度プレイ
-                </button>
-                <button
-                  onClick={onClose}
-                  className="px-6 py-3 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
-                >
-                  ルームを退出
-                </button>
+                </motion.button>
+                {isOnlineMode && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={onClose}
+                    className="px-6 py-3 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                  >
+                    ルームを退出
+                  </motion.button>
+                )}
               </motion.div>
             </div>
           </motion.div>

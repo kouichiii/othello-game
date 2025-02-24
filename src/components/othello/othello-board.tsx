@@ -212,6 +212,7 @@ export default function OthelloBoard({
               setShowModal(false);
               resetGame();
             }}
+            isOnlineMode={false}
           />
 
           <MultiplayerModal
