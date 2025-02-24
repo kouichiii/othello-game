@@ -1,4 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# オセロゲーム
+
+Next.js、TypeScript、Socket.IOを使用したオンライン対戦可能なオセロゲームです。
+
+## 機能
+
+- ソロプレイ（AI対戦）
+  - 3段階の難易度設定
+  - ヒント表示機能
+- オンライン対戦
+  - リアルタイムでの対戦
+  - ルーム機能
+  - 対戦相手の待機状態表示
+- モダンなUI/UX
+  - アニメーション効果
+  - レスポンシブデザイン
+  - 直感的な操作
+
+## 技術スタック
+
+- Next.js 15.1.7
+- TypeScript
+- Socket.IO
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+
+## 開発環境のセットアップ
+
+```bash
+# リポジトリのクローン
+git clone [リポジトリURL]
+
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
+npm run dev
+```
+
+## デプロイ
+
+```bash
+# ビルド
+npm run build
+
+# 本番環境での起動
+npm run start
+```
+
+## ライセンス
+
+MIT
 
 ## Getting Started
 
